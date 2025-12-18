@@ -23,6 +23,14 @@ The wrapper does **not** replace the original GDScript. It acts as a typed faça
 
 ---
 
+## Usage
+
+```
+python GDScriptToCSharpTypeWrapper.py path/to/MyScript.gd --classname MyWrapper
+```
+
+---
+
 ## Generated Structure
 
 The generated C# class follows this structure:
