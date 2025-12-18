@@ -5,9 +5,6 @@ from csharp.field import field
 from csharp.method import method
 from csharp.c_class import c_class
 
-verbose: bool = False
-
-
 def main() -> None:
     parser = argparse.ArgumentParser(
         prog="GDScriptToCSharpTypeWrapper",
@@ -26,10 +23,10 @@ def main() -> None:
 
     classname = args.classname
 
-    gdscript_tp_c_sharp_type_wrapper(args.filename, classname)
+    gdscript_to_c_sharp_type_wrapper(args.filename, classname)
 
 
-def gdscript_tp_c_sharp_type_wrapper(filename, classname=None) -> None:
+def gdscript_to_c_sharp_type_wrapper(filename, classname=None) -> None:
     in_lines = read(filename)
     out_lines = []
     parent_class_name = None
@@ -40,7 +37,7 @@ def gdscript_tp_c_sharp_type_wrapper(filename, classname=None) -> None:
         if "func" in line:
             out_lines.append(method(line))
         if "extends" in line:
-            parent_class_name = line.replace("extends", "").replace(" ", "")
+            parent_class_name = (line.replace("extends", "").replace(" ", ""))
 
     new_filename = filename.replace(".gd", ".cs")
     formatted = "\n".join(f"\t{line}" for line in out_lines)
